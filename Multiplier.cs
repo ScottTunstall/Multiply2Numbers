@@ -13,27 +13,23 @@ namespace Multiply2Numbers
         public long Multiply(int multiplicand, int multiplier)
         {
             long product = 0;
-
-            for (int i = 0; i < 32; i++)
+            long a = multiplicand;
+            var b = multiplier;
+            
+            while (b>0)
             {
-                var digit1 = (multiplier & (1 << i)) != 0 ? 1: 0 ;
+                // If bit 0 of multiplier is set, we use it in multiplication
+                if ((b&1)!=0)
+                    product += a;  // NOTE: using the | operator here gives incorrect result
 
-                var result = MultiplyBy(multiplicand, digit1, i);
+                a <<=1;
 
-                product |= result;
-
-                Console.WriteLine($"For iteration {i} product is {product}");
+                // Ensure bit 0 is set to next digit to multiply by
+                b >>= 1;
             }
             
             return product;
         }
 
-        private long MultiplyBy(int multiplicand, int bit, int shift)
-        {
-            if (bit == 1)
-                return multiplicand << shift;
-
-            return 0;
-        }
     }
 }

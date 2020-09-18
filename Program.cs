@@ -7,7 +7,7 @@ namespace Multiply2Numbers
         static void Main(string[] args)
         {
             var x = new Multiplier();
-            var y = x.Multiply(3, 5);
+            var y = x.Multiply(3, 22);
             Console.WriteLine($"Result: {y}");
         }
     }
